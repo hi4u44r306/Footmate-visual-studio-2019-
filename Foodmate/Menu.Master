@@ -104,7 +104,7 @@
     </div>
   </nav>
 
-  <div class="row row-cols-2 row-cols-md-3 ml-auto mr-auto">
+  <div class="row row-cols-1 row-cols-md-3 ml-auto mr-auto">
     <!--Card-->
     <div class="col mb-4">
       <!--Hot pot by victor-->

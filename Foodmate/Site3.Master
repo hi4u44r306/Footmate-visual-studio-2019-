@@ -57,7 +57,7 @@
 	<div class="limiter">
 		<div class="container-signup100">
 			<div class="wrap-signup100">
-	
+			<div class="signup100-form validate-form">
 					<span class="signup100-form-title p-b-43">
 						Foodmate Sign up
 					</span>
@@ -123,10 +123,11 @@
 					</div>
 					
 					<div class="signup100-form-social flex-c-m"> <!--google sign up button-->
-						<a href="#" class="signup100-form-social-item flex-c-m bg1 m-r-5">
+						<a href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S721647489%3A1597818428281484&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp" class="signup100-form-social-item flex-c-m bg1 m-r-5">
 							<b>G</b>
             			</a>
 					  </div>
+				</div>
 		<div class="signup100-more" style="background-image: url('images/bg-01.jpg');"></div>
 			</div>
           	
