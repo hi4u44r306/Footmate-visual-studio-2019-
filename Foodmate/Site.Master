@@ -1,0 +1,171 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Foodmate.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="google-signin-client_id"
+        content="595659111390-5bp1ap7i91b2cbl271895ut30nt0iuvp.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Foodmate Login</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+  <link rel="icon" type="image/png" href="/images/icons/main icon.png" />
+
+<%--以下載入Bootstrap函數庫--%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<%--以下載入FontAwesome等文字效果之函數庫--%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.js"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css"/> 
+
+<%--以下載入自設CSS函數--%>
+<link rel="stylesheet" href="/Content/login.css"/>
+<link rel="stylesheet" href="/Content/util.css"/>
+
+<%--以下載入自設JS函數庫--%>
+<script src="/js/main.js"></script>
+
+<%--以下載入 Firebase 函數庫與預設值--%>
+
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyC_eeA-HV7Tt9fCrwmz75XvbsHmbxbcPqU",
+        authDomain: "food-friends-49103.firebaseapp.com",
+        databaseURL: "https://food-friends-49103.firebaseio.com",
+        projectId: "food-friends-49103",
+        storageBucket: "food-friends-49103.appspot.com",     
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        //document.getElementById("login div").style.display = "block";
+        var test = user.value();
+    
+        alert(user);
+   
+        // User is signed in.
+    } else {
+        //document.getElementById("login div").style.display = "none";
+        // No user is signed in.
+      
+    }
+});
+</script>
+
+</head>
+
+
+<body style="background-color: #666666;"> 
+  
+   <%-- 以下的CSS：limiter，放在/Content/main.css內--%>
+    <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100" id="login div">
+    <%--        在下方，原程式是 <form ... 但form 內部的程式無法執行認證，因此改成 div--%>
+            <div class="login100-form validate-form">
+                <span class="login100-form-title p-b-43">
+                    Foodmate Login
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input id="UserName" class="input100" type="text" placeholder="Username or Email..." name="email" />
+                    <span class="focus-input100"></span>
+                </div>
+                <div
+                    class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input id="UserPwd" value="" class="input100" type="password" placeholder="Password..." name="pass"/>
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="flex-sb-m w-full p-t-3 p-b-32">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>  
+                    </div>   
+                    <div>
+                        <%-- 以下為在用戶按"Forget Password"之後，會跳到 ForgetPassword.aspx，而其主版頁面為 Site2.Master
+                            ForgetPassword.aspx為空，內容寫在Site2.Master，因為Site2.Master的<body>下方才能放<form>--%>
+                        <asp:HyperLink ID="Link1" runat="server" NavigateUrl="/ForgetPassword.aspx" Text="Forgot Password?" />
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="login100-form-btn" onclick="login()">
+                        Login
+                    </button>
+                </div>
+                <div class="text-center p-t-46 p-b-20">
+                    <span class="txt2">
+                        or sign up using
+                    </span>
+                </div>
+                
+                
+                    
+                <div class="login100-form-social flex-c-m">
+                    <div class="g-signin2" data-onsuccess="onSignIn" , class="center"></div>
+                    <a href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S721647489%3A1597818428281484&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp" class="flex-c-m m-r-30">
+                    </a>
+                    <t></t>
+                    <a href="/SignupPage" class="login100-form-social-item flex-c-m bg3 m-r-5">
+                        <b>U+</b>
+                    </a>
+                    <%-- 以下為在用戶按"Forget Password"之後，會跳到 SignupPage.aspx，而其主版頁面為 Site3.Master
+                        SignupPage.aspx為空，內容寫在Site3.Master，因為Site3.Master的<body>下方才能放<form>--%>
+                </div>
+            </div>
+          <div class="login100-more" style="background-image: url('/images/background2.jpg');">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+          
+
+    </form>
+</body>
+</html>

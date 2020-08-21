@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Google Map.master.cs" Inherits="Foodmate.Google_Map" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <title> <%: Page.Title %>- Google Map</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:ContentPlaceHolder>
+    <link rel="icon" type="image/png" href="/images/icons/main icon.png" />
+<%--以下載入Bootstrap函數庫--%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<%--以下載入FontAwesome等文字效果之函數庫--%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.js"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css"/> 
+
+<%--以下載入自設CSS函數--%>
+<link rel="stylesheet" href="/Content/google map.css"/>
+<link rel="stylesheet" href="/Content/util.css"/>
+
+<%--以下載入自設JS函數庫--%>
+<script src="/js/main.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+        <!--navbar-->
+        <a href="menu.aspx" class="navbar-brand"><img src="./images/icons/main icon.png" /></a>
+        <span class="col-mb-4"></span>
+        <!--can put our app name-->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="nav nav-pills mr-auto">
+                <li class="nav-item">
+                    <a href="menu.aspx" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="create event.aspx" class="nav-link">Creat-Event</a>
+                </li>
+                <li class="nav-item">
+                    <a href="chat.aspx" class="nav-link">Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.aspx" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="notification.aspx" class="nav-link">Notification</a>
+                </li>
+                <li class="nav-item">
+                    <a href="google map.aspx" class="nav-link active">Google Map</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
